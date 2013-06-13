@@ -1,0 +1,11 @@
+class CreateCommissioners < ActiveRecord::Migration
+  def change
+    create_table :commissioners do |t|
+      t.datetime :start_time
+      t.time :pick_time_limit
+      t.integer :current_pick
+
+      t.timestamps
+    end
+  end
+end

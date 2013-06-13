@@ -1,0 +1,17 @@
+class CreateSelections < ActiveRecord::Migration
+  def change
+    create_table :selections do |t|
+      t.integer :order
+
+      t.belongs_to :item
+      t.belongs_to :commissioner
+      t.belongs_to :player
+
+      t.timestamps
+    end
+    add_index :selections, :commissioner
+    add_index :selections, :item
+    add_index :selections, :player
+    add_index :selections, [:item, :player]
+  end
+end

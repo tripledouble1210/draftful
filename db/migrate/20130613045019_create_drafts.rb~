@@ -1,0 +1,11 @@
+class CreateDrafts < ActiveRecord::Migration
+  def change
+    create_table :drafts do |t|
+      t.string :password_digest
+      t.bool :is_private, default: true
+      t.bool :is_snake, default: true
+
+      t.timestamps
+    end
+  end
+end

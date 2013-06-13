@@ -1,0 +1,9 @@
+class CreateDeclarations < ActiveRecord::Migration
+  def change
+    create_table :declarations do |t|
+      t.integer :rank
+
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,6 @@
+class AddUrlToRoom < ActiveRecord::Migration
+  def change
+    add_column :rooms, :url, :string
+  end
+  add_index :rooms, :url
+end

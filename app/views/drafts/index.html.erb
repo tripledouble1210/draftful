@@ -1,0 +1,6 @@
+<ul>
+  <%= @drafts.each do |draft| %>
+    <%= link_to draft.name, draft_path(draft) %>
+  <% end %>
+</ul>
+<%= link_to "New Draft", new_draft_path %>

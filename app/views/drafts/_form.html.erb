@@ -1,0 +1,47 @@
+<% options ||= {} %>
+
+<%= form_for(draft, options) do |builder| %>
+  <fieldset>
+    <legend>Draft</legend>
+    <%= fields_for draft.build_room do |room_builder| %>
+      <%= room_builder.label :name, "Draft Name" %>
+      <%= room_builder.text_field :name %>
+
+      <%= room_builder.label :minimum_occupancy %>
+      <%= room_builder.number_field :minimum_occupancy, min: 0 %>
+
+      <%= room_builder.label :maximum_occupancy %>
+      <%= room_builder.number_field :maximum_occupancy, min: 0 %>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Timing</legend>
+    <%= fields_for draft.build_commissioner do |commissioner_builder| %>
+      <%= commissioner_builder.label :start_time %>
+      <%= commissioner_builder.datetime_select :start_time %>
+
+      <%= commissioner_builder.label :pick_time_limit%>
+      <%= commissioner_builder.time_select :pick_time_limit %>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Options</legend>
+    <%= builder.label :is_snake, "Draft Type" %>
+    <%= builder.select :is_snake, [["Snake", true], ["Linear", false]] %>
+
+    <%= builder.label :is_private, "Privacy" %>
+    <%= builder.select :is_private, [["Public", false], ["Password protected", true]] %>
+
+    <%= builder.label :password %>
+    <%= builder.password_field :password %>
+
+    <%= builder.label :password_confirmation %>
+    <%= builder.password_field :password_confirmation %>
+
+  </fieldset>
+
+  <%= builder.submit "Create!", class: "button expand" %>
+
+<% end %>

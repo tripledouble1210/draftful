@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613050346) do
+ActiveRecord::Schema.define(:version => 20130613071524) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "order"
+    t.integer  "draft_id"
+    t.integer  "player_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "assignments", ["draft_id"], :name => "index_assignments_on_draft_id"
+  add_index "assignments", ["player_id"], :name => "index_assignments_on_player_id"
 
   create_table "commissioners", :force => true do |t|
     t.datetime "start_time"
@@ -35,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130613050346) do
   add_index "declarations", ["draft_id", "item_id"], :name => "index_declarations_on_draft_id_and_item_id"
   add_index "declarations", ["draft_id"], :name => "index_declarations_on_draft_id"
   add_index "declarations", ["item_id"], :name => "index_declarations_on_item_id"
+  add_index "declarations", ["rank"], :name => "index_declarations_on_rank"
 
   create_table "drafts", :force => true do |t|
     t.string   "password_digest"
@@ -61,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130613050346) do
   end
 
   add_index "rooms", ["draft_id"], :name => "index_rooms_on_draft_id"
+  add_index "rooms", ["url"], :name => "index_rooms_on_url"
 
   create_table "selections", :force => true do |t|
     t.integer  "order"
@@ -74,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20130613050346) do
   add_index "selections", ["commissioner_id"], :name => "index_selections_on_commissioner_id"
   add_index "selections", ["item_id", "player_id"], :name => "index_selections_on_item_id_and_player_id"
   add_index "selections", ["item_id"], :name => "index_selections_on_item_id"
+  add_index "selections", ["order"], :name => "index_selections_on_order"
   add_index "selections", ["player_id"], :name => "index_selections_on_player_id"
 
 end
